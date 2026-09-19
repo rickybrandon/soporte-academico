@@ -54,3 +54,10 @@ def calcular_estadisticas(lista_solicitudes: list) -> dict:
         "total": total,
         "por_prioridad": conteo_prioridad
     }
+def cambiar_estado_solicitud(lista_solicitudes: list, codigo_ticket: str, nuevo_estado: str) -> bool:
+    """Busca una solicitud por su código de ticket y actualiza su estado."""
+    for sol in lista_solicitudes:
+        if sol.get("ticket") == codigo_ticket:
+            sol["estado"] = nuevo_estado
+            return True
+    return False
