@@ -61,3 +61,61 @@ def cambiar_estado_solicitud(lista_solicitudes: list, codigo_ticket: str, nuevo_
             sol["estado"] = nuevo_estado
             return True
     return False
+def main():
+    """Función principal del sistema."""
+    solicitudes = []
+    correlativo = 1
+    
+    while True:
+        mostrar_menu()
+        opcion = input("Seleccione una opción (1-3): ").strip()
+        
+        if opcion == "1":
+            codigo = input("Código de estudiante: ").strip()
+            if not validar_texto_obligatorio(codigo):
+                print("Error: El código no es válido.")
+                continue
+                
+            tipo = input("Tipo de consulta (matricula/pagos/constancia/plataforma/otro): ").strip()
+            if not validar_tipo_consulta(tipo):
+                print("Error: Tipo de consulta no permitido.")
+                continue
+                
+            desc = input("Descripción de la solicitud: ").strip()
+            urgencia_str = input("Nivel de urgencia (1-5): ").strip()
+            urgencia = int(urgencia_str) if urgencia_str.isdigit() else 1
+            
+            ticket = generar_codigo_ticket(correlativo)
+            prioridad = determinar_prioridad(urgencia)
+            
+            nueva_sol = {
+                "ticket": ticket,
+                "codigo": codigo,
+                "tipo": tipo,
+                "descripcion": desc,
+                "urgencia": urgencia,
+                "prioridad": prioridad,
+                "estado": "Pendiente"
+            }
+            
+            solicitudes.append(nueva_sol)
+            correlativo += 1
+            print(f"✅ Solicitud registrada con éxito. Ticket: {ticket} | Prioridad: {prioridad}")
+            
+        elif opcion == "2":
+            if not solicitudes:
+                print("No hay solicitudes registradas.")
+            else:
+                print("\n--- LISTA DE SOLICITUDES ---")
+                for s in solicitudes:
+                    print(f"[{s['ticket']}] Estudiante: {s['codigo']} | Tipo: {s['tipo']} | Prioridad: {s['prioridad']} | Estado: {s['estado']}")
+                    
+        elif opcion == "3":
+            print("¡Gracias por utilizar el Módulo de Atención!")
+            break
+        else:
+            print("Opción no válida. Intente de nuevo.")
+
+
+if __name__ == "__main__":
+    main()
