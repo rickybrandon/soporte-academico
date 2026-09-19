@@ -24,3 +24,6 @@ def mostrar_menu():
         return "Media"
     else:
         return "Baja"
+    def generar_codigo_ticket(correlativo: int, prefijo: str = "SA") -> str:
+    """Genera un código único de ticket formateado como PREFIJO-000X."""
+    return f"{prefijo}-{correlativo:04d}"
