@@ -27,3 +27,7 @@ def mostrar_menu():
     def generar_codigo_ticket(correlativo: int, prefijo: str = "SA") -> str:
     """Genera un código único de ticket formateado como PREFIJO-000X."""
     return f"{prefijo}-{correlativo:04d}"
+def registrar_solicitudes_lote(lista_solicitudes: list, nuevas_solicitudes: list) -> list:
+    """Recibe una lista existente y agrega múltiples nuevas solicitudes."""
+    lista_solicitudes.extend(nuevas_solicitudes)
+    return lista_solicitudes
