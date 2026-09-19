@@ -16,3 +16,11 @@ def mostrar_menu():
     print("2. Ver solicitudes registradas")
     print("3. Salir")
     print("============================================")
+    def determinar_prioridad(urgencia: int) -> str:
+    """Determina la prioridad de la solicitud según el nivel de urgencia (1 a 5)."""
+    if urgencia >= 4:
+        return "Alta"
+    elif urgencia >= 2:
+        return "Media"
+    else:
+        return "Baja"
