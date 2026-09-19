@@ -31,3 +31,12 @@ def registrar_solicitudes_lote(lista_solicitudes: list, nuevas_solicitudes: list
     """Recibe una lista existente y agrega múltiples nuevas solicitudes."""
     lista_solicitudes.extend(nuevas_solicitudes)
     return lista_solicitudes
+def buscar_solicitudes(lista_solicitudes: list, criterio: str) -> list:
+    """Busca solicitudes por código de estudiante o por tipo de consulta."""
+    criterio_limpio = criterio.strip().lower()
+    resultados = []
+    for sol in lista_solicitudes:
+        if (sol.get("codigo") == criterio_limpio or 
+            sol.get("tipo", "").lower() == criterio_limpio):
+            resultados.append(sol)
+    return resultados
