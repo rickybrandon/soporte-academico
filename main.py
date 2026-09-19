@@ -40,3 +40,17 @@ def buscar_solicitudes(lista_solicitudes: list, criterio: str) -> list:
             sol.get("tipo", "").lower() == criterio_limpio):
             resultados.append(sol)
     return resultados
+def calcular_estadisticas(lista_solicitudes: list) -> dict:
+    """Calcula el total de solicitudes y la distribución por prioridad."""
+    total = len(lista_solicitudes)
+    conteo_prioridad = {"Alta": 0, "Media": 0, "Baja": 0}
+    
+    for sol in lista_solicitudes:
+        prioridad = sol.get("prioridad", "Baja")
+        if prioridad in conteo_prioridad:
+            conteo_prioridad[prioridad] += 1
+            
+    return {
+        "total": total,
+        "por_prioridad": conteo_prioridad
+    }
