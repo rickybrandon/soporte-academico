@@ -7,3 +7,12 @@ TIPOS_PERMITIDOS = ["matricula", "pagos", "constancia", "plataforma", "otro"]
 def validar_tipo_consulta(tipo: str) -> bool:
     """Valida si el tipo de consulta pertenece a la lista permitida."""
     return tipo.strip().lower() in TIPOS_PERMITIDOS
+def mostrar_menu():
+    """Muestra el menú principal en consola."""
+    print("\n============================================")
+    print("   SOPORTE ACADÉMICO - MÓDULO DE ATENCIÓN   ")
+    print("============================================")
+    print("1. Registrar nueva solicitud")
+    print("2. Ver solicitudes registradas")
+    print("3. Salir")
+    print("============================================")
